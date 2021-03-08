@@ -1,4 +1,7 @@
-const COVERAGES = ['Full Coverage', 'Low Coverage', 'Medium Coverage', 'Special Full Coverage', 'Super Sale'];
+//Coberturas en las que se realizara una operación
+const { constants } = require('../common/constants');
+
+
 class CarInsurance {
 
     constructor(products = []) {
@@ -9,15 +12,12 @@ class CarInsurance {
         return product.price + (product.sellIn < 0 ? 2 : 1);
     }
 
-    getPriceLowCoverage(product) {
-        return product.price - (product.sellIn < 0 ? 2 : 1);
-    }
-
-    getPriceMediumCoverage(product) {
+    getPriceLowMediumCoverage(product) {
         return product.price - (product.sellIn < 0 ? 2 : 1);
     }
 
     getPriceSpecialFullCoverage(product) {
+        //el producto ya no es válido
         if (product.sellIn < 0) {
             return 0;
         }
@@ -34,6 +34,7 @@ class CarInsurance {
         return product.price - 2 * (product.sellIn < 0 ? 2 : 1);
     }
 
+    //Validar que precio cumpla con las condiciones solicitadas entre 0 y 50
     validatePrice(price) {
         return price < 0 ? 0 : (price > 50 ? 50 : price);
     }
@@ -43,23 +44,23 @@ class CarInsurance {
         for (let i = 0; i < this.products.length; i++) {
 
             switch (this.products[i].name) {
-                case COVERAGES[0]:
+                case constants.FULL_COVERAGE:
                     this.products[i].price = this.validatePrice(this.getPriceFullCoverage(this.products[i]));
                     this.products[i].sellIn--
                         break;
-                case COVERAGES[1]:
-                    this.products[i].price = this.validatePrice(this.getPriceLowCoverage(this.products[i]));
+                case constants.LOW_COVERAGE:
+                    this.products[i].price = this.validatePrice(this.getPriceLowMediumCoverage(this.products[i]));
                     this.products[i].sellIn--
                         break;
-                case COVERAGES[2]:
-                    this.products[i].price = this.validatePrice(this.getPriceMediumCoverage(this.products[i]));
+                case constants.MEDIUM_COVERAGE:
+                    this.products[i].price = this.validatePrice(this.getPriceLowMediumCoverage(this.products[i]));
                     this.products[i].sellIn--
                         break;
-                case COVERAGES[3]:
+                case constants.SPECIAL_FULL_COVERAGE:
                     this.products[i].price = this.validatePrice(this.getPriceSpecialFullCoverage(this.products[i]));
                     this.products[i].sellIn--
                         break;
-                case COVERAGES[4]:
+                case constants.SUPER_SALE:
                     this.products[i].price = this.validatePrice(this.getPriceSuperSale(this.products[i]));
                     this.products[i].sellIn--
                         break;

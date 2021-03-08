@@ -16,16 +16,16 @@ const productsAtDayZero = [
 const carInsurance = new CarInsurance(productsAtDayZero);
 
 const titlePrinter = (i) => {
-    console.log('\n');
-    console.log(`-------- day ${i} --------\n`);
-    console.log('name, sellIn, price\n');
+    console.log('');
+    console.log(`-------- day ${i} --------`);
+    console.log('name, sellIn, price');
 };
 
 const productPrinter = (product) => {
-    console.log(`${product.name}, ${product.sellIn}, ${product.price}\n`);
+    console.log(`${product.name}, ${product.sellIn}, ${product.price}`);
 };
 
-console.log('\n');
+//Dia 0 o de inicio del ciclo para la actualización de precios
 titlePrinter(0)
 productsAtDayZero.forEach(productPrinter);
 for (let i = 1; i <= 30; i += 1) {
