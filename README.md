@@ -1,4 +1,11 @@
+## Nombre del Proyecto: Test para ComparaOnline
+## Descripción: Debajo esta todo la descripción de test
+## Autor: Ender Urdaneta
 
+## DIRECTORIOS:
+src/common: Aqui coloco los archivos comunes
+src/model: Todas las clases del aplicativo
+spec: Test con mocha y chai
 
 # ComparaOnline Test Requirements Specification
 
